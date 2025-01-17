@@ -1,8 +1,11 @@
 <template>
-   
-    <h2>Adivina el Pokemon de la IMAGEN</h2>
-    <PokemonImagen/>
+   <div class="container">
+
+  
+    <h2>Adivina el Pokemon de la Imagen</h2>
+    <PokemonImagen :pokemonID="241" :show-pokemon="true"/>
     <PokemonOpciones/>
+</div>
   
 </template>
 
@@ -19,6 +22,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+h2{
+    color: white;
+    text-align: center;
+}
+.container{
+  background: #c1121f;
+}
+
 
 </style>
