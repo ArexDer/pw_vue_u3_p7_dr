@@ -1,43 +1,55 @@
 <template>
-    <div class="container">
-        <ul>
-            <li>Opt 1</li>
-            <li>Opt 2</li>
-            <li>Opt 3</li>
-            <li>Opt 4</li>
-        </ul>
+    <div class="options-container">
+     
+      <ul>
+          <li v-for="pokemon in pokemons" :key="pokemon.id" @click="seleccionado">{{ pokemon.nombre }}</li>
+       
+      </ul>
+   
     </div>
-  
-</template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style scoped>
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-ul{
-    list-style: none;
-    padding: 0;
-}
-li{
-    background: white;
-    width: 230px;
-    border: 4px solid black;
-    border-radius: 8px;
-    margin-top: 8px;
-    cursor: pointer;
-}
-
-li:hover{
-    background: #969191;
-}
-
-</style>
+  </template>
+   
+  <script>
+  export default {
+      props:{
+        pokemons:{
+              type:Array,
+              required:true,
+   
+          },
+      },
+      methods:{
+          seleccionado(){
+              console.log("CLICK en Seleccionado");
+          }
+      }
+   
+   
+   
+   
+  };
+  </script>
+   
+  <style>
+  ul{
+      list-style-type: none;
+  }
+  li{
+   
+      background: white;
+      width: 250px;
+      border: solid 1px ;
+      border-radius: 15px;
+      margin-top:8px;
+      cursor:pointer;
+     
+     
+  }
+  li:hover{
+      background: rgba(0,0,0,0.05);
+  }
+  .options-container{
+      display: flex;
+      justify-content: center;
+      }
+  </style>

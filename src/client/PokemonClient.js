@@ -1,7 +1,9 @@
 
+//METODOD
 function obtenerAleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 
 const obtenerArregloNumerico=() =>{
     const arreglo = [];
@@ -12,29 +14,32 @@ const obtenerArregloNumerico=() =>{
     return arreglo;
 }
 
-const obtenerArregloPokemons= (arreglo)=>{
+const obtenerArregloPokemons= async (arreglo)=>{
 
-    const arregloPokemons=[];
+    const nom1= await consumiAPI(arreglo[0]);
+    const nom2= await consumiAPI(arreglo[1]);
+    const nom3= await consumiAPI(arreglo[2]);
+    const nom4= await consumiAPI(arreglo[3]);
+
     const obj1={
-        nombre: "",
-        imagen: ""
+        nombre: nom1,
+        id: arreglo[0],
     };
     const obj2={
-        nombre: "",
-        imagen: ""
+        nombre: nom2,
+        id: arreglo[1],
     };
     const obj3={
-        nombre: "",
-        imagen: ""
+        nombre: nom3,
+        id: arreglo[2],
     };
     const obj4={
-        nombre: "",
-        imagen: ""
+        nombre: nom4,
+        id: arreglo[3],
     };
-    arregloPokemons[0]=obj1;
-    arregloPokemons[1]=obj2;
-    arregloPokemons[2]=obj3;
-    arregloPokemons[3]=obj4;
+    const arregloPokemons=[obj1, obj2, obj3, obj4];
+   
+    return arregloPokemons;
 /*
     for(let i=0; i<arreglo.length; i++){
         const data = fetch(`https://pokeapi.co/api/v2/pokemon/${arreglo[i]}`)
@@ -45,3 +50,38 @@ const obtenerArregloPokemons= (arreglo)=>{
 
    
 }
+
+const consumiAPI = async (id) =>{
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    .then(response => response.json())
+    
+    return data.name;
+
+}
+
+/////////////////////////////////
+// Tengo qeu ahcer dos cosas para usar este metodod:
+/*
+1.-Declarar un metodo PARA ENVIARLO A UN ENVOLTORIO...
+2.-Exportar el metodo fachada
+*/
+//METODO
+  const consultarPokemons = async()=>{
+    return await obtenerArregloPokemons(obtenerArregloNumerico());
+}
+
+//FACHADA
+export const consultarPokemonsFachada = async()=>{
+    return await consultarPokemons();
+}
+
+//FACHADA
+export function obtenerAleatorioFachada(min, max) {
+    return obtenerAleatorio(min, max);
+  }
+
+//ESTO SE USA SOLO PARA EXPORTAR UNA SOLA FUNCION
+//export default consultarPokemonsFachada;
+
+
+
