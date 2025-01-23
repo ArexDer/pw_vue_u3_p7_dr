@@ -1,6 +1,9 @@
 <template>
-  
+  <div class="pageContainer">
+
+ 
  <PaginaPokemon/>
+</div>
 </template>
 
 <script>
@@ -26,5 +29,6 @@ export default {
   margin-top: 60px;
   
 }
+
 
 </style>
