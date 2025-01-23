@@ -2,7 +2,11 @@
    <div class="container" v-if="pokemonObjeto!=null">
 
   
-    <h2>Quien ese POKEMON?</h2>
+    <h2>Quien es ese POKEMON?</h2>
+    <div class="opciones">
+        <h3>Intentos: {{contador}}</h3>
+
+    </div>
 
     <PokemonImagen ref="miHijo" :pokemonID="pokemonObjeto.id" :show-pokemon="pokemonShow"/>
     <!--
