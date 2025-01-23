@@ -18,6 +18,12 @@
 
 <script>
 export default {
+     data(){
+          return{
+               propiedadPrueba: "Texto de Prueba",
+               
+          }
+     },
      props:{
 
      pokemonID:{
@@ -39,10 +45,12 @@ export default {
                  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.pokemonID}.svg`;
                
                
+          }            
+     },
+     methods: {
+          mostrarPrueba(){
+               console.log("Metodo ejecutado desde el PADRE ");
           }
-               
-             
-              
      }
 };
 </script>
