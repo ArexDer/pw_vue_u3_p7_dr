@@ -2,7 +2,9 @@
   <div class="pageContainer">
 
  
- <PaginaPokemon/>
+
+ <PersonaPage/>
+ 
 </div>
 </template>
 
@@ -10,11 +12,14 @@
 import HelloWorld from './components/HelloWorld.vue'
 import PaginaPokemon from './pages/PaginaPokemon.vue';
 
+import PersonaPage from './pages/PersonaPage.vue';
+
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    PaginaPokemon
+    PaginaPokemon,
+    PersonaPage
   }
 }
 </script>
