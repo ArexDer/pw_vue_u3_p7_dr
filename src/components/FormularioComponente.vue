@@ -25,8 +25,12 @@
             </div>
             <div class="formulario-atributos">
                 <button  class="btn-C" @click="buscarPersona">Consultar</button>
-                <br>
+         
                 <button  class="btn-C" @click="guardarPersona">Guardar</button>
+                <button  class="btn-C" @click="actualizarPersona">Actualizar</button>
+                <button  class="btn-C" @click="actualizarPersonaParcial">ActualizarParcial</button>
+                <button  class="btn-C" @click="eliminarPersona">Eliminar</button>
+               
             </div>
         </div>
     </div>
@@ -62,28 +66,46 @@ export default {
         async guardarPersona(){
             const bodyPersona={
                 //ESTE NOMBRE nombre: SACO DE LA ESTRUCTURA DE EL JSON
+                
+                nombre: this.persona.nombre,
+               apellido: this.persona.apellido,
+                fechaNacimiento: this.persona.fechaNacimiento
+
+            }
+            await insertarFachada(bodyPersona);  
+            console.log('SE GUARDO LA PERSONA');
+        },
+        async actualizarPersona(){
+            const bodyPersona={
+                
                 nombre: this.persona.nombre,
                 apellido: this.persona.apellido,
                 fechaNacimiento: this.persona.fechaNacimiento
 
             }
-            await insertarFachada(bodyPersona);
-
-           
-
-           
-            
-            
+            await actualizarFachada(this.persona.id, bodyPersona);  
+            console.log('SE ACTUALIZO LA PERSONA');
         },
-            
+        async eliminarPersona(){
+            await eliminarFachada(this.persona.id);  
+            console.log('SE ELIMINO LA PERSONA');
+        },
+        async actualizarPersonaParcial(){
+            const bodyPersona={
+                
+                nombre: this.persona.nombre,
+               
 
-
+            }
+            await actualizarParcialFachada(this.persona.id, bodyPersona);  
+            console.log('SE ACTUALIZO-PARCIAL A LA PERSONA');
+        }
     },
     
     mounted() {
         console.log('Se montó en la página antes de LLAMAR AL API');
 
-        obtenerPorIdFachada(thi.persona.id);
+        obtenerPorIdFachada(this.persona.id);
     },
     
 
@@ -134,6 +156,10 @@ input {
 input:focus {
     border-color: #007bff;
     outline: none;
+}
+.btn-C{
+    margin: 5px;
+
 }
 .btn-C {
     background: #007bff;
